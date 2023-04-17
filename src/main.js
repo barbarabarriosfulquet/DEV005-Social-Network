@@ -25,7 +25,7 @@ function navigateTo(hans) {
       route.path,
       window.location.origin + route.path,
     );
-   
+
     if (root.firstChild) {
       root.removeChild(root.firstChild);
     }root.appendChild(route.component(navigateTo));
