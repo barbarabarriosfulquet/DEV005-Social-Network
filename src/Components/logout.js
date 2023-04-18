@@ -2,7 +2,7 @@ import { signOut } from 'firebase/auth';
 import { async } from 'regenerator-runtime';
 import { auth } from './firebase.js';
 
-function logout(navigateTo) {
+function logout(navigateTo){
 
   const signOut = document.createElement('button');
   logout.addEventListener('click', async () => {

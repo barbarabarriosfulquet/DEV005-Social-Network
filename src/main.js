@@ -3,8 +3,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from './Components/firebase.js';
 import register from './Components/register.js';
 import login from './Components/login.js';
-import loginGoogle from './Components/logginGoogle.js';
-import logout from './Components/logout';
+import logout from './Components/logout.js';
 import error404 from './Components/error404.js';
 import { async } from 'regenerator-runtime';
 
@@ -14,7 +13,6 @@ const root = document.getElementById('root');
 const routes = [
   { path: '/', component: register },
   { path: '/login', component: login },
-  { path: '/loginGoogle', component: loginGoogle },
   { path: '/error404', component: error404 },
   { path: '/logout', component: logout },
 ];
@@ -39,7 +37,8 @@ function navigateTo(hans) {
 
     if (root.firstChild) {
       root.removeChild(root.firstChild);
-    }root.appendChild(route.component(navigateTo));
+    }
+    root.appendChild(route.component(navigateTo));
   } else {
     navigateTo('/error404');
   }

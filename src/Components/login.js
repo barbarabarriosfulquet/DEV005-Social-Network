@@ -4,10 +4,9 @@ import { async } from 'regenerator-runtime';
 import { auth } from './firebase.js';
 
 function login(navigateTo) {
-  alert("aca es")
   const tittle = document.createElement('h1');
   const paragraph = document.createElement('p');
-  const form = document.createElement('form');
+  const form = document.createElement('section');
   const inputEmail = document.createElement('input');
   inputEmail.id = 'inputEmail';
   const inputPassword = document.createElement('input');
