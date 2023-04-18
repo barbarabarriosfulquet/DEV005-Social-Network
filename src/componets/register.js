@@ -44,6 +44,15 @@ function Login(nav) {
   const registerFacebook = document.createElement('button');
   registerFacebook.setAttribute('id', 'LoginFace');
   registerFacebook.textContent = 'Ingresar con Facebook';
+  
+
+  const LoginFacebook = document.createElement('div');
+  const imgFacebook = document.createElement('img');
+  imgFacebook.setAttribute('id', 'imgFacebook');
+  imgFacebook.setAttribute('src', '../imagenes/facebook.png');
+  const registerFacebook = document.createElement('button');
+  registerFacebook.setAttribute('id', 'LoginFace');
+  registerFacebook.textContent = 'Ingresar con Facebook';
 
   login.append(imgGoogle, registerGoogle);
   LoginFacebook.append(imgFacebook, registerFacebook);

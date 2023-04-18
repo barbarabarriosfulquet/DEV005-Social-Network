@@ -1,8 +1,10 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { async } from 'regenerator-runtime';
 import { auth } from './firebase.js';
 
 function login(navigateTo) {
+  alert("aca es")
   const tittle = document.createElement('h1');
   const paragraph = document.createElement('p');
   const form = document.createElement('form');
@@ -12,7 +14,11 @@ function login(navigateTo) {
   inputPassword.id = 'inputPassword';
   const buttonLogin = document.createElement('button');
   const buttonGoBack = document.createElement('button');
-
+  const finalparagraph = document.createElement('p');
+  const imgLogo = document.createElement('img');
+  imgLogo.setAttribute('id', 'imgLogo');
+  imgLogo.setAttribute('src', './imagenes/logo.png');
+  imgLogo.setAttribute('alt', 'Viajeras Empoderadas');
   tittle.textContent = 'Login';
   paragraph.textContent = 'Regístrate para conocer mas mujeres empoderadas con ganas de viajar y conocer sus experiencias de primera mano';
 
@@ -20,7 +26,14 @@ function login(navigateTo) {
   inputPassword.placeholder = 'Contraseña';
   buttonLogin.textContent = 'Registrate';
   buttonGoBack.textContent = 'Regresar';
+  const name = document.createElement('input');
+  name.setAttribute('id', 'name');
+  name.placeholder = 'Nombre completo';
+  const user = document.createElement('input');
+  user.setAttribute('id', 'user');
+  user.placeholder = 'Nombre  de usuario';
 
+  finalparagraph.textContent = 'Al registrarte, aceptas nuestras Condicionesnuestra Política de pivacidad de y nuestra Política de cookies.'
   inputPassword.addEventListener('input', () => {
     const password = inputPassword.value;
     const maskedPassword = '*'.repeat(password.length);
@@ -30,6 +43,9 @@ function login(navigateTo) {
     event.preventDefault();
     const email = document.getElementById('inputEmail').value;
     const password = document.getElementById('inputPassword').value;
+    const credential = await signInWithEmailAndPassword(auth, email, password);
+    console.log(credential);
+    //esta pendiente hacerle el try catx=ch
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       console.log(userCredential);
@@ -51,7 +67,7 @@ function login(navigateTo) {
     navigateTo('/');
   });
 
-  form.append(tittle, paragraph, inputEmail, inputPassword, buttonLogin, buttonGoBack);
+  form.append(imgLogo,tittle, paragraph, inputEmail,name, user,inputPassword, finalparagraph,buttonLogin, buttonGoBack);
   return form;
 }
 export default login;

@@ -1,20 +1,31 @@
 import './Components/firebase.js';
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from './Components/firebase.js';
-import home from './Components/home.js';
+import register from './Components/register.js';
 import login from './Components/login.js';
 import loginGoogle from './Components/logginGoogle.js';
+import logout from './Components/logout';
 import error404 from './Components/error404.js';
+import { async } from 'regenerator-runtime';
+
 
 const root = document.getElementById('root');
 // creando rutas
 const routes = [
-  { path: '/', component: home },
+  { path: '/', component: register },
   { path: '/login', component: login },
   { path: '/loginGoogle', component: loginGoogle },
   { path: '/error404', component: error404 },
+  { path: '/logout', component: logout },
 ];
+// de tal manera puedo disparar que usuario esta autenticado
+//onAuthStateChanged(auth, async(user)=>{
+ //if(user){
 
+ //}else{
+
+ //}
+//})
 const defaultRoute = '/';
 
 function navigateTo(hans) {
