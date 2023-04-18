@@ -2,7 +2,7 @@ import './Components/firebase.js';
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from './Components/firebase.js';
 import home from './Components/home.js';
-import login from './Components/login.js';
+import login from './Components/register.js';
 import loginGoogle from './Components/logginGoogle.js';
 import error404 from './Components/error404.js';
 
