@@ -10,11 +10,13 @@ function register(navigateTo) {
   const inputPassword = document.createElement('input');
   inputPassword.id = 'inputPassword';
   const buttonInit = document.createElement('button');
+  buttonInit.type = 'button';
   const buttonGoogle = document.createElement('button');
   buttonGoogle.id = 'LoginGoogle';
   buttonGoogle.type = 'button';
   const paragraph = document.createElement('p');
   const buttonRecord = document.createElement('button');
+  buttonRecord.type = 'button';
   const imgLogo = document.createElement('img');
 
   imgLogo.setAttribute('id', 'imgLogo');
@@ -27,14 +29,14 @@ function register(navigateTo) {
   buttonGoogle.textContent = 'Ingresar con Google';
   paragraph.textContent = 'Has olvidado tu contraseña?';
   buttonRecord.textContent = 'Regìstrate';
-
-  // buttonGoogle.addEventListener('click', () => {
-  // navigateTo('/loginGoogle');
-  // });
-
+  inputPassword.addEventListener('input', () => {
+    const password = inputPassword.value;
+    const maskedPassword = '*'.repeat(password.length);
+    inputPassword.value = maskedPassword;
+  });
   buttonGoogle.addEventListener('click', async () => {
-    const google = new GoogleAuthProvider();
-    signInWithPopup(auth, google)
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -62,23 +64,23 @@ function register(navigateTo) {
     navigateTo('/login');
   });
 
-  const login = document.createElement('div');
+  /*const login = document.createElement('div');
   const imgGoogle = document.createElement('img');
   imgGoogle.setAttribute('id', 'imgGoogle');
   imgGoogle.setAttribute('src', '../imagenes/google.png');
-  imgGoogle.setAttribute('alt', 'Logo Google');
+  imgGoogle.setAttribute('alt', 'Logo Google');*/
 
-  const LoginFacebook = document.createElement('div');
+  /*const LoginFacebook = document.createElement('div');
   const imgFacebook = document.createElement('img');
   imgFacebook.setAttribute('id', 'imgFacebook');
   imgFacebook.setAttribute('src', '../imagenes/facebook.png');
   const registerFacebook = document.createElement('button');
   registerFacebook.setAttribute('id', 'LoginFace');
-  registerFacebook.textContent = 'Ingresar con Facebook';
+  registerFacebook.textContent = 'Ingresar con Facebook';*/
 
-  login.append(imgGoogle);
-  LoginFacebook.append(imgFacebook, registerFacebook);
-  form.append(imgLogo, tittle, inputEmail, inputPassword, buttonInit, login, buttonGoogle, LoginFacebook, paragraph, buttonRecord);
+  //login.append(imgGoogle);
+  //LoginFacebook.append(imgFacebook, registerFacebook);
+  form.append(tittle, inputEmail, inputPassword, buttonInit,buttonGoogle, paragraph, buttonRecord);
   return form;
 }
 

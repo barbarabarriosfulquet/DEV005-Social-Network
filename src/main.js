@@ -4,6 +4,7 @@ import { auth } from './Components/firebase.js';
 import register from './Components/register.js';
 import login from './Components/login.js';
 import logout from './Components/logout.js';
+import feed from './Components/feed.js';
 import error404 from './Components/error404.js';
 import { async } from 'regenerator-runtime';
 
@@ -15,6 +16,7 @@ const routes = [
   { path: '/login', component: login },
   { path: '/error404', component: error404 },
   { path: '/logout', component: logout },
+  { path: '/feed', component: feed },
 ];
 // de tal manera puedo disparar que usuario esta autenticado
 //onAuthStateChanged(auth, async(user)=>{
