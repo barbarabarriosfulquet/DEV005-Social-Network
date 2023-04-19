@@ -1,9 +1,7 @@
-import './Components/firebase.js';
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from './Components/firebase.js';
 import home from './Components/home.js';
-import login from './Components/register.js';
-import loginGoogle from './Components/logginGoogle.js';
+import login from './Components/login.js';
+import logout from './Components/logout.js';
+import feed from './Components/feed.js';
 import error404 from './Components/error404.js';
 
 const root = document.getElementById('root');
@@ -11,10 +9,18 @@ const root = document.getElementById('root');
 const routes = [
   { path: '/', component: home },
   { path: '/login', component: login },
-  { path: '/loginGoogle', component: loginGoogle },
   { path: '/error404', component: error404 },
+  { path: '/logout', component: logout },
+  { path: '/feed', component: feed },
 ];
+// de tal manera puedo disparar que usuario esta autenticado
+// onAuthStateChanged(auth, async(user)=>{
+// if(user){
 
+// }else{
+
+// }
+// })
 const defaultRoute = '/';
 
 function navigateTo(hans) {
@@ -28,7 +34,8 @@ function navigateTo(hans) {
 
     if (root.firstChild) {
       root.removeChild(root.firstChild);
-    }root.appendChild(route.component(navigateTo));
+    }
+    root.appendChild(route.component(navigateTo));
   } else {
     navigateTo('/error404');
   }

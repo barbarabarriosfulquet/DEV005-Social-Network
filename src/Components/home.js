@@ -1,3 +1,7 @@
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { async } from 'regenerator-runtime';
+import { auth } from './firebase.js';
+
 function home(navigateTo) {
   const container = document.createElement('div');
   const imgContainer = document.createElement('img');
@@ -51,8 +55,30 @@ function home(navigateTo) {
   paragraph.textContent = 'Has olvidado tu contraseña?';
   buttonRecord.textContent = 'Regìstrate';
 
-  buttonGoogle.addEventListener('click', () => {
-    navigateTo('/loginGoogle');
+  buttonGoogle.addEventListener('click', async () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+        console.log(credential);
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+        console.log(error);
+      });
   });
   buttonRecord.addEventListener('click', () => {
     navigateTo('/login');

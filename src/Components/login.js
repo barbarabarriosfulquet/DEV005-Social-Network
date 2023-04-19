@@ -1,4 +1,5 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { async } from 'regenerator-runtime';
 import { auth } from './firebase.js';
 
 function login(navigateTo) {
