@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { FacebookAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { async } from 'regenerator-runtime';
 import { auth } from './firebase.js';
 
@@ -25,6 +25,7 @@ function home(navigateTo) {
   containerGoogle.id = 'containerGoogle';
   const buttonGoogle = document.createElement('button');
   buttonGoogle.id = 'buttonGoogle';
+  buttonGoogle.type = 'button';
 
   const imgGoogle = document.createElement('img');
   imgGoogle.id = 'imgGoogle';
@@ -35,6 +36,7 @@ function home(navigateTo) {
   containerFace.id = 'containerFace';
   const buttonFace = document.createElement('button');
   buttonFace.id = 'buttonFace';
+  buttonFace.type = 'button';
 
   const imgFace = document.createElement('img');
   imgFace.id = 'imgFace';
@@ -55,6 +57,12 @@ function home(navigateTo) {
   paragraph.textContent = 'Has olvidado tu contraseña?';
   buttonRecord.textContent = 'Regìstrate';
 
+  inputPassword.addEventListener('input', () => {
+    const password = inputPassword.value;
+    const maskedPassword = '*'.repeat(password.length);
+    inputPassword.value = maskedPassword;
+  });
+
   buttonGoogle.addEventListener('click', async () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
@@ -69,6 +77,7 @@ function home(navigateTo) {
         // IdP data available using getAdditionalUserInfo(result)
         // ...
         console.log(credential);
+        navigateTo('/feed');
       })
       .catch((error) => {
         // Handle Errors here.
@@ -86,6 +95,40 @@ function home(navigateTo) {
         console.log(error);
       });
   });
+
+  buttonFace.addEventListener('click', async () => {
+    const provider = new FacebookAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = FacebookAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        console.log(token);
+        // The signed-in user info.
+        const user = result.user;
+        console.log(user);
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+        console.log(credential);
+        navigateTo('/feed');
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        console.log(errorCode);
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        // The email of the user's account used.
+        const email = error.customData.email;
+        console.log(email);
+        // The AuthCredential type that was used.
+        const credential = FacebookAuthProvider.credentialFromError(error);
+        console.log(credential);
+        // ...
+        console.log(error);
+      });
+  });
+
   buttonRecord.addEventListener('click', () => {
     navigateTo('/login');
   });
