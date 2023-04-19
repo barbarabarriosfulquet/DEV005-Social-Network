@@ -1,12 +1,11 @@
 import { FacebookAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { async } from 'regenerator-runtime';
 import { auth } from './firebase.js';
 
 function home(navigateTo) {
   const container = document.createElement('div');
   const imgContainer = document.createElement('img');
   imgContainer.setAttribute('id', 'imgContainer');
-  imgContainer.setAttribute('src', './imagenes/viaje.jpg');
+  imgContainer.setAttribute('src', './imagenes/viaje4.jpg');
   imgContainer.setAttribute('alt', 'Viajeras Empoderadas');
 
   const imgLogo = document.createElement('img');
@@ -40,7 +39,7 @@ function home(navigateTo) {
 
   const imgFace = document.createElement('img');
   imgFace.id = 'imgFace';
-  imgFace.setAttribute('src', './imagenes/facebook.png');
+  imgFace.setAttribute('src', './imagenes/facebook.webp');
   imgFace.setAttribute('alt', 'Logo de Google');
 
   const paragraph = document.createElement('p');

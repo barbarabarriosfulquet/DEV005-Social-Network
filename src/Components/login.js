@@ -62,6 +62,8 @@ function login(navigateTo) {
     event.preventDefault();
     const email = document.getElementById('inputEmail').value;
     const password = document.getElementById('inputPassword').value;
+    console.log(user.value);
+    console.log(name.value);
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       console.log(userCredential);
