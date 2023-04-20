@@ -46,24 +46,17 @@ function login(navigateTo) {
   buttonLogin.textContent = 'Registrate';
   buttonGoBack.textContent = 'Regresar';
 
-  inputPassword.addEventListener('input', () => {
-    const password = inputPassword.value;
-    const maskedPassword = '*'.repeat(password.length);
-    inputPassword.value = maskedPassword;
-  });
 
   confirmarPass.addEventListener('input', () => {
     const passConfirmar = confirmarPass.value;
     const maskedPass = '*'.repeat(passConfirmar.length);
     confirmarPass.value = maskedPass;
   });
-
+  
   buttonLogin.addEventListener('click', async (event) => {
     event.preventDefault();
     const email = document.getElementById('inputEmail').value;
     const password = document.getElementById('inputPassword').value;
-    console.log(user.value);
-    console.log(name.value);
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       console.log(userCredential);
