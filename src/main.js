@@ -1,3 +1,4 @@
+
 import home from './Components/home.js';
 import login from './Components/login.js';
 import logout from './Components/logout.js';
@@ -15,12 +16,6 @@ const routes = [
 ];
 // de tal manera puedo disparar que usuario esta autenticado
 // onAuthStateChanged(auth, async(user)=>{
-// if(user){
-
-// }else{
-
-// }
-// })
 const defaultRoute = '/';
 
 function navigateTo(hans) {
@@ -36,6 +31,8 @@ function navigateTo(hans) {
       root.removeChild(root.firstChild);
     }
     root.appendChild(route.component(navigateTo));
+   
+    
   } else {
     navigateTo('/error404');
   }
