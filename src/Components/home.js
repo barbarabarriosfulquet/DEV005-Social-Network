@@ -1,5 +1,6 @@
 import { FacebookAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from './firebase.js';
+import { start } from '../lib/login.js';
 
 function home(navigateTo) {
   const container = document.createElement('div');
@@ -16,7 +17,9 @@ function home(navigateTo) {
   const form = document.createElement('form');
   const tittle = document.createElement('h1');
   const inputEmail = document.createElement('input');
+  inputEmail.id = 'email';
   const inputPassword = document.createElement('input');
+  inputPassword.id = 'password';
   const buttonInit = document.createElement('button');
   buttonInit.id = 'buttonInit';
 
@@ -60,6 +63,19 @@ function home(navigateTo) {
     const password = inputPassword.value;
     const maskedPassword = '*'.repeat(password.length);
     inputPassword.value = maskedPassword;
+  });
+
+  buttonInit.addEventListener('click', (e) => {
+    e.preventDefault();
+    // const email = document.getElementById('inputEmail').value;
+    // const password = document.getElementById('inputPassword').value;
+    start(inputEmail.value, inputPassword.value)
+      .then((user) => {
+        console.log(user);
+        navigateTo('/feed');
+      }).catch((error) => {
+        console.error('tienes un error', error);
+      });
   });
 
   buttonGoogle.addEventListener('click', async () => {
